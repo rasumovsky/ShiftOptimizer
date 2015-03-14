@@ -109,60 +109,60 @@ public class Scheduler {
 		
 	    case "add":
 		
-			switch (commands[1]) { //inner switch
-			
-			case "employee":
-					
-			//prompt for name
-			System.out.println("Enter Employee Name :   ")
+		switch (commands[1]) { //inner switch
+		    
+		case "employee":
+		    
+		    //prompt for name
+		    System.out.println("Enter Employee Name :   ")
 			String inputA = stdin.nextLine();
-				if (inputA.length() > 0) { 
-				String newName = inputA;
-				}
-			Employee newEmp = new Employee(); //default no arg constructor
-			newEmp.myName(newName);
-			System.out.println("Enter shift :   ")
+		    if (inputA.length() > 0) { 
+			String newName = inputA;
+		    }
+		    Employee newEmp = new Employee(); //default no arg constructor
+		    newEmp.myName(newName);
+		    System.out.println("Enter shift :   ")
 			String inputB = stdin.nextLine();
-			String delims = " ";
-			if (input.length() > 0) {  // if a shift is entered
-				String[] splitLine = inputB.split(delims);
-				boolean isBusyBool = (boolean)(Integer.parseInt(splitLine[2]));
-				TimeSlot newSlot = new TimeSlot(Integer.parseInt(splitLine[0]), 
-					Integer.parseInt(splitLine[1]),
-					isBusyBool,
-					Integer.parseInt(splitLine[3])
-					);
+		    String delims = " ";
+		    if (input.length() > 0) {  // if a shift is entered
+			String[] splitLine = inputB.split(delims);
+			boolean isBusyBool = (boolean)(Integer.parseInt(splitLine[2]));
+			TimeSlot newSlot = new TimeSlot(Integer.parseInt(splitLine[0]), 
+							Integer.parseInt(splitLine[1]),
+							isBusyBool,
+							Integer.parseInt(splitLine[3])
+							);
 			newEmp.add(newSlot);
 			System.out.println("Timeslot added")
-			allEmployees.add(newEmp);
-			}
-			else {
+			    allEmployees.add(newEmp);
+		    }
+		    else {
 			allEmployees.add(newEmp); //include only dummy/null timeslot if a hard return selected
 			System.out.println("Dummy Timeslot added")
-			}
-			break;
-			
-			case "employer":
-			
-			System.out.println("Enter shift :   ")
+			    }
+		    break;
+		    
+		case "employer":
+		    
+		    System.out.println("Enter shift :   ")
 			String inputB = stdin.nextLine();
-			String delims = " ";
-			if (input.length() > 0) {  // if a shift is entered
-				String[] splitLine = inputB.split(delims);
-				boolean isBusyBool = (boolean)(Integer.parseInt(splitLine[2]));
-				TimeSlot newSlot = new TimeSlot(Integer.parseInt(splitLine[0]), 
-					Integer.parseInt(splitLine[1]),
-					isBusyBool,
-					Integer.parseInt(splitLine[3])
-					);
+		    String delims = " ";
+		    if (input.length() > 0) {  // if a shift is entered
+			String[] splitLine = inputB.split(delims);
+			boolean isBusyBool = (boolean)(Integer.parseInt(splitLine[2]));
+			TimeSlot newSlot = new TimeSlot(Integer.parseInt(splitLine[0]), 
+							Integer.parseInt(splitLine[1]),
+							isBusyBool,
+							Integer.parseInt(splitLine[3])
+							);
 			newEmp.add(newSlot);
 			System.out.println("Shift added")
-			theEmployer.add(newEmp);
+			    theEmployer.add(newEmp);
 			break;
 			
-			case "toSchedule":
-			//searches for name, then adds to mySchedule
-			//prompt for name
+		    case "toSchedule":
+			// searches for name, then adds to mySchedule
+			// prompt for name
 			System.out.println("Enter Employee Name :   ")
 			String inputA = stdin.nextLine();
 				if (inputA.length() > 0) { 
@@ -222,10 +222,10 @@ public class Scheduler {
 		break;
 	    }
 	    
-	}
+		}
 	
 	
-	// HELPER METHODS
+		// HELPER METHODS
 	
 	 /**
      * Set up the iterator to traverse the allEmployees LinkedList
@@ -262,9 +262,11 @@ public class Scheduler {
 	Iterator<Employee> findIter = this.iterator(); //i.e. iterator defined below
 	
 	while (findIter.hasNext()) {
-		if (findIter.next().getName().equals(findName)) {
-		mySchedule.add(testSlot);
-		mySortedSchedule.add(testSlot); // this seems redundant - doesn't add() do both of these - must be adding to wrong object
+	    Employee newEmployee = findIter.next();
+	    if (newEmployee.getName().equals(findName)) {
+		newEmployee.add(testSlot);
+		//mySchedule.add(testSlot);
+		//mySortedSchedule.add(testSlot); // this seems redundant - doesn't add() do both of these - must be adding to wrong object
 		}
 	
 	}
